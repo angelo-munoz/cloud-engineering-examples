@@ -1,5 +1,15 @@
 # based off TF docs example: https://github.com/hashicorp/learn-terraform-aws-asg
 # uses Ubuntu Jammy as EC2 AMI
+terraform {
+  cloud {
+    organization = "go-cloud-engineers"
+
+    workspaces {
+      name = "github-aws-auto-scaling-web-app"
+    }
+  }
+}
+
 provider "aws" {
   region = "us-west-2"
 
