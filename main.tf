@@ -57,7 +57,7 @@ resource "aws_launch_configuration" "terramino" {
   image_id        = data.aws_ami.ubuntu.id
   instance_type   = "t2.micro"
   user_data       = file("bootstrap.sh") #replace with your own bootstrap file name
-  key_name        = "amunoz_admin" #replace with your own key name
+  key_name        = "amunoz_admin"       #replace with your own key name
   security_groups = [aws_security_group.terramino_instance.id]
 
   lifecycle {
@@ -109,7 +109,7 @@ resource "aws_lb_target_group" "terramino" {
 
 resource "aws_autoscaling_attachment" "terramino" {
   autoscaling_group_name = aws_autoscaling_group.terramino.id
-  lb_target_group_arn   = aws_lb_target_group.terramino.arn
+  lb_target_group_arn    = aws_lb_target_group.terramino.arn
 }
 
 resource "aws_security_group" "terramino_instance" {
@@ -122,11 +122,11 @@ resource "aws_security_group" "terramino_instance" {
   }
 
   egress {
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
     #security_groups = [aws_security_group.terramino_lb.id]
-    cidr_blocks      = ["0.0.0.0/0"] #outbound access to the world to download patches
+    cidr_blocks = ["0.0.0.0/0"] #outbound access to the world to download patches
   }
 
   vpc_id = module.vpc.vpc_id
@@ -149,4 +149,4 @@ resource "aws_security_group" "terramino_lb" {
   }
 
   vpc_id = module.vpc.vpc_id
-}   
+}
