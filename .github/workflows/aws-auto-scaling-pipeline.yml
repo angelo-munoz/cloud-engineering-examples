@@ -1,0 +1,8 @@
+name: aws-auto-scaling
+on: [push]
+jobs:
+  deploy-aws:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo 'hello cloud engineers!'
